@@ -77,7 +77,7 @@ body {
   padding: 0.8rem 1rem 0.7rem;
   border: 0.2rem solid #4d4d4d;
   cursor: pointer;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 }
 .btn.toggle-btn {
   border-width: 1px;
@@ -372,4 +372,31 @@ table .cell-icons {
 }
 body {
   overflow-y: overlay; /*полоса прокрутки поверх содержимого*/
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+#loading_true {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+  animation: rotate 1s linear infinite;
+}
+#loading_false {
+  display: none;
+}
+
+#calc-matrix-button {
+  display: inline-block;
+}
+
+#fake-map {
+  display: none;
 }

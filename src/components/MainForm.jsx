@@ -3,11 +3,6 @@ import React from "react";
 const MainForm = (props) => {
     return (
         <form>
-            <h2 className="label-wrapper">
-                {/* <label htmlFor="new-todo-input" className="label__lg">
-                    Какая точка назначения?
-                </label> */}
-            </h2>
             <input type="text"
                 id="new-todo-input"
                 className="input input__lg"

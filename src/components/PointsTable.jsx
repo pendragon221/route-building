@@ -1,6 +1,18 @@
 import React from "react";
 
+
 const PointsTable = (props) => {
+    const wayPointsList = props.waypoints.map((el) => {
+        return (
+            <tr>
+                <td className='cell-number'>{el.id}</td>
+                <td className='cell-data no-border-right'>{el.pointName}</td>
+                <td className='cell-icons no-border-left'>
+                    <i className="material-icons button edit">edit</i>
+                    <i className="material-icons button delete">delete</i>
+                </td>
+            </tr>)
+    })
     return (
         <div className={props.waypoints.length !== 0 ? '' : 'disabled'}>
             <table className="points-table">
@@ -15,7 +27,7 @@ const PointsTable = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.doWayPointsList()}
+                    {wayPointsList}
                 </tbody>
             </table>
         </div>
