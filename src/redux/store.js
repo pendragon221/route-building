@@ -10,29 +10,16 @@ const LOADING_ON = 'LOADING-ON'
 const LOADING_OFF = 'LOADING-OFF'
 const UPDATE_BEST_ROUTE_POINTS_ID_ARR = 'UPDATE-BEST-ROUTE-POINTS-ID-ARR'
 const CHANGE_CURRENT_INDEX = 'CHANGE-CURRENT-INDEX'
+const UPDATE_WAYPOINTS = 'UPDATE-WAYPOINTS'
+
 
 const initialState = {
     waypoints: [
-        {
-            "id": 1,
-            "pointName": "каштановая 1 могилев беларусь"
-        },
-        {
-            "id": 2,
-            "pointName": "каштановая 10 могилев беларусь"
-        },
-        {
-            "id": 3,
-            "pointName": "каштановая 20 могилев беларусь"
-        },
-        {
-            "id": 4,
-            "pointName": "каштановая 30 могилев беларусь"
-        },
-        {
-            "id": 5,
-            "pointName": "каштановая 34 могилев беларусь"
-        }
+        { title: "каштановая 1 могилев беларусь", isEdit: false },
+        { title: "каштановая 10 могилев беларусь", isEdit: false },
+        { title: "каштановая 20 могилев беларусь", isEdit: false },
+        { title: "каштановая 30 могилев беларусь", isEdit: false },
+        { title: "каштановая 34 могилев беларусь", isEdit: false },
     ],
     newWaypointText: '',
     map: null,
@@ -54,8 +41,13 @@ function mainPageReducer(state = initialState, action) {
         case 'ADD-WAYPOINT':
             return {
                 ...state,
-                waypoints: [...state.waypoints, { id: action.id, pointName: state.newWaypointText }],
+                waypoints: [...state.waypoints, { title: state.newWaypointText, isEdit: false }],
                 newWaypointText: ''
+            }
+        case 'UPDATE-WAYPOINTS':
+            return {
+                ...state,
+                waypoints: action.waypoints
             }
         case 'UPDATE-MAP':
             return {
@@ -116,6 +108,14 @@ export const addWaypointAC = (id) => {
         id: id
     }
 }
+
+export const updateWaypointsAC = (waypoints) => {
+    return {
+        type: UPDATE_WAYPOINTS,
+        waypoints: waypoints
+    }
+}
+
 export const updateMapAC = (map) => {
     return {
         type: UPDATE_MAP,

@@ -6,22 +6,15 @@ import PointsTable from './PointsTable';
 import BestRouteList from './BestRouteList';
 import DistanceMatrixBuilder from '../logic/my-algorithms/DistanceMatrixBuilder';
 import LoadingAnimation from './LoadingAnimation';
+import { NavLink } from 'react-router-dom';
+
 
 class MainPage extends React.Component {
-
-    addWaypoint = () => {
-        this.props.addWaypoint(this.props.waypoints.length + 1)
-    }
-
-    onTextChange = (el) => {
-        const text = el.target.value
-        this.props.changePointText(text)
-    }
 
     findBestRouteButtonClick = () => {
         this.props.loadingOn()
         let waypoints = this.props.waypoints.map((el) => {
-            return el.pointName
+            return el.title
         })
         DistanceMatrixBuilder.doIt(waypoints)
             .then(res => {
@@ -73,14 +66,14 @@ class MainPage extends React.Component {
             this.props.map?.destroy()
             console.log('map: ' + this.props.map);
             if (index + 1 < waypoints.length) {
-                this.buildRoute([waypoints[this.props.bestRoutePointsIdArr[index]].pointName,
-                waypoints[this.props.bestRoutePointsIdArr[index + 1]].pointName])
+                this.buildRoute([waypoints[this.props.bestRoutePointsIdArr[index]].title,
+                waypoints[this.props.bestRoutePointsIdArr[index + 1]].title])
                 this.props.changeCurrentIndex(index + 1)
             }
             else {
                 console.log(index);
-                this.buildRoute([waypoints[this.props.bestRoutePointsIdArr[index]].pointName,
-                waypoints[this.props.bestRoutePointsIdArr[0]].pointName])
+                this.buildRoute([waypoints[this.props.bestRoutePointsIdArr[index]].title,
+                waypoints[this.props.bestRoutePointsIdArr[0]].title])
                 this.props.changeCurrentIndex(-1)
             }
         }
@@ -94,21 +87,8 @@ class MainPage extends React.Component {
     render() {
         return (
             <div className="todoapp stack-large" >
+                <NavLink to="/">Login</NavLink>
                 <div id="fake-map"></div>
-
-                <h1>
-                    Постройте свой маршрут
-                </h1>
-
-                <MainForm onTextChange={this.onTextChange}
-                    waypointText={this.props.waypointText}
-                    addWaypoint={this.addWaypoint} />
-
-                <h2 id="list-heading">
-                    В вашем маршруте {this.props.waypoints.length} точек
-                </h2>
-
-                <PointsTable waypoints={this.props.waypoints} doWayPointsList={this.doWayPointsList} />
 
                 {this.props.waypoints.length >= 2 ? <FindBestRouteButton
                     findBestRouteButtonClick={this.findBestRouteButtonClick} /> : ''}

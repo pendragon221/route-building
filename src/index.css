@@ -364,6 +364,10 @@ table .cell-icons {
   text-align: center;
 }
 
+table .cell-data {
+  padding: 5px;
+}
+
 #calc-button {
   width: 100%;
 }

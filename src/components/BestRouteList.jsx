@@ -4,7 +4,7 @@ import React from "react";
 const makePathList = (pointsIdArr, waypoints) => {
     return (
         <ul>
-            {pointsIdArr.map((el) => <li>{waypoints[el].pointName}</li>)}
+            {pointsIdArr.map((el, index) => <li key={index}>{waypoints[el].title}</li>)}
         </ul>
     )
 }

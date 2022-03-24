@@ -44,6 +44,7 @@ class DistanceMatrixBuilder {
             }
         }
         map.destroy()
+        console.log(resultArray)
         return resultArray
     }
 

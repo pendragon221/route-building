@@ -9,7 +9,6 @@ const MainForm = (props) => {
                 placeholder='Введите адрес...'
                 onChange={props.onTextChange}
                 value={props.waypointText}>
-
             </input>
             <button className="btn btn__primary btn__lg" type="button" onClick={props.addWaypoint}>Добавить</button>
         </form>
